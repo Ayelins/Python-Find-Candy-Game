@@ -1,24 +1,57 @@
 # Find the Candy
 
-A simple memory game made with Python and Turtle graphics. The goal is to memorize the location of each candy on a 4×4 grid and then find all copies of the candy the game requests after the grid is covered.
+A simple memory game made with Python and Turtle graphics. You look at a grid of candies, memorize where they are, and then try to find all copies of a specific candy once the grid is covered.
 
 ---
 
-## How the game works
-1. Click **Start** on the welcome screen.  
-2. A 4×4 grid of candies appears for a few seconds.  
-3. The candies are covered by black squares.  
-4. The game tells you which candy to find (blue, green, red, or purple).  
-5. Click the boxes where you think that candy is hidden.  
-6. Correct clicks uncover the candy.  
-7. When you find all copies of that candy, you move to the next round.  
-8. Every 3 rounds, your level goes up.
+## Step-by-Step Explanation of the Project
+
+### 1. Setup and Images
+- The game uses the `turtle` module to draw everything on the screen.
+- Four candy images (`bluecandy.gif`, `greencandy.gif`, `purplecandy.gif`, `redcandy.gif`) are loaded.
+- The screen is set to 800×800 with a white background.
+
+### 2. Making the 4×4 Grid
+- The function `make_grid()` calculates 16 positions so each candy has a spot on the grid.
+- `candy_turtle()` creates 16 turtle objects that will hold the candy images.
+
+### 3. Placing Random Candies
+- `random_candylocation()` shuffles all candy images so the grid is different every round.
+- `make_candy()` places each candy image onto the grid.
+
+### 4. Covering the Candy
+- After a short delay, `black_box()` puts black squares on top of all candies.
+- This hides the candies so the player must remember where they were.
+
+### 5. Choosing the Candy to Find
+- The game randomly picks one candy (example: `bluecandy.gif`) as the **target candy**.
+- `game_score()` displays:
+  - Score
+  - Current Level
+  - Which candy you need to find
+
+### 6. Clicking and Checking
+- When the player clicks:
+  - The game checks which square was clicked.
+  - If the candy under the square matches the target candy:
+    - The black square is removed
+    - The game shows “Correct!”
+  - If all copies of that candy are found:
+    - Score increases
+    - A new round starts
+  - If the player clicks the wrong candy:
+    - Score decreases (but never below 0)
+    - A new shuffled round starts
+
+### 7. Leveling Up
+- Every 3 points, the level increases.
+- A message “LEVEL UP!” appears for one second.
+
+### 8. Start Screen
+- Before the game begins, there is a welcome screen with:
+  - A green Start button
+  - A moving candy animation
+  - A title message
+- Clicking Start hides the intro screen and begins the game.
 
 ---
-
-## Features
-- Start screen with a button and a moving candy animation  
-- Random candy placement each round  
-- Score and level display  
-- Wrong guesses shuffle the grid and lower your score  
-- Simple level-up system  
